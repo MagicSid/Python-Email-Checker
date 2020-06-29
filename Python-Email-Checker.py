@@ -6,12 +6,20 @@ def check(inputText):
     isValidPrefix = False
     isValidSuffix = False
     split = re.split("@", inputText)
-    #Check suffix and prefix of address.
-
-    if(len(split) == 2 and isValidPrefix and isValidSuffix):
+    if(len(split) != 2):
+        return False
+    prefix = split[0]
+    suffix = split[1]
+    #Check prefix of address.
+    if(
+    
+    #Now check Suffix
+    
+    #Final checks for validity
+    if(isValidPrefix and isValidSuffix):
         return True
-
-    return False
+    else:
+        return False
     
 
 
