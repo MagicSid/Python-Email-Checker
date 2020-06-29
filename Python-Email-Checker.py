@@ -11,15 +11,13 @@ def check(inputText):
     prefix = split[0]
     suffix = split[1]
     #Check prefix of address.
-    if(
-    
-    #Now check Suffix
-    
-    #Final checks for validity
-    if(isValidPrefix and isValidSuffix):
-        return True
-    else:
+    if():
         return False
+    #Now check Suffix
+    if():
+        return False
+    #if All checks passed then simply return true
+    return True
     
 
 
