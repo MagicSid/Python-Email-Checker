@@ -6,16 +6,17 @@ def check(inputText):
     isValidPrefix = False
     isValidSuffix = False
     split = re.split("@", inputText)
-    if(len(split) != 2):
+    if(len(split) != 2 or len(suffix) > 253):
         return False
     prefix = split[0]
-    suffix = split[1]
+    suffix = re.split(".",split[1])
     #Check prefix of address.
     if():
         return False
     #Now check Suffix
-    if():
-        return False
+    for(domain in suffix):
+        if(domain > 63 or ):
+            return False
     #if All checks passed then simply return true
     return True
     
