@@ -19,7 +19,8 @@ def check(inputText):
     
     #Check prefix of address.
     legitChars = "(([a-z]*[0-9]*[!#$%&'*+/=?^_`{|}~-]*)*)"
-    testpre = re.sub(legitChars,"",prefix)
+    legitCharsPlus = "(([a-z]+|[0-9]+|[!#$%&'*+/=?^_`{|}~-]+)+)"
+    testpre = re.sub(legitCharsPlus + "\." + legitCharsPlus + "|" + legitChars,"",prefix)
     print(testpre)
     if(testpre != ""):
         return False
@@ -32,8 +33,11 @@ def check(inputText):
     
 
 
-print(check("bleh"))
-print(check("Jo.hn@myspace.com"))
-print(check("\"Jo..hn\"@myspace.com"))
-print(check("Jo..hn@myspace.com"))
-print(check("!#$%&'*+-/=?^_`{|}~@bleh.com"))
+print("Should Fail:" + str(check("bleh")))
+print("Should succeed:" + str(check("Jo.hn@myspace.com")))
+print("Should Fail:" + str(check(".John@myspace.com")))
+print("Should Fail:" + str(check("John.@myspace.com")))
+print("Should succeed:" + str(check("\"Jo..hn\"@myspace.com")))
+print("Should Fail:" + str(check("Jo..hn@myspace.com")))
+print("Should succeed:" + str(check("!#$%&'*+-/=?^_`{|}~@bleh.com")))
+
