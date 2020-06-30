@@ -14,14 +14,13 @@ def check(inputText):
     
     prefix = split[0]
     suffix = re.split(".",split[1])
-    if len(split[1]) > 253 or len(prefix) > 64:
+    if len(split[1]) > 253 or len(prefix) > 64 or prefix[0:1] ==".":
         return False
     
     #Check prefix of address.
-    legitChars = "(([a-z]*[0-9]*[!#$%&'*+/=?^_`{|}~-]*)*)"
+    legitChars = "(([a-z]*[0-9]*[!#$%&'*+/=?^_`{|}~. -]*)*)"
     legitCharsPlus = "(([a-z]+|[0-9]+|[!#$%&'*+/=?^_`{|}~-]+)+)"
-    testpre = re.sub(legitCharsPlus + "\." + legitCharsPlus + "|" + legitChars,"",prefix)
-    print(testpre)
+    testpre = re.sub("(\." + legitCharsPlus + ")+|" + legitCharsPlus + "|(\""+ legitChars +"\")","",prefix)
     if(testpre != ""):
         return False
     #Now check Suffix
@@ -30,14 +29,17 @@ def check(inputText):
             return False
     #if All checks passed then simply return true
     return True
-    
 
-
+#Test no @
 print("Should Fail:" + str(check("bleh")))
+
+#Test Prefix
 print("Should succeed:" + str(check("Jo.hn@myspace.com")))
+print("Should succeed:" + str(check("J.o.hn@myspace.com")))
 print("Should Fail:" + str(check(".John@myspace.com")))
 print("Should Fail:" + str(check("John.@myspace.com")))
 print("Should succeed:" + str(check("\"Jo..hn\"@myspace.com")))
 print("Should Fail:" + str(check("Jo..hn@myspace.com")))
 print("Should succeed:" + str(check("!#$%&'*+-/=?^_`{|}~@bleh.com")))
 
+#Test Suffix
