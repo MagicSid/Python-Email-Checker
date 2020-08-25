@@ -58,3 +58,4 @@ print("Should fail:" + str(check("John@-myspace.com")))
 print("Should fail:" + str(check("John@myspace.-com")))
 print("Should fail:" + str(check("John@myspace.com-")))
 
+input("Press Enter to end")
